@@ -42,6 +42,13 @@
             max-width: 100%;
             margin: auto;
         }
+        .center-logo {
+            text-align: left;
+            display: block;
+            max-width: 20%;
+            /* margin: auto; */
+        }
+
 
         input[type="submit"]:hover {
             background-color: #0056b3;
@@ -56,6 +63,7 @@
 </head>
 <body>
     <div class="container">
+        <img class="center-logo" src="../static/upchaar_text.png" alt="Uploaded Image">
         <h1>Upload your osteoarthritis X-Ray</h1>
         <form method="POST" action="/predict" enctype="multipart/form-data">
             <input type="file" name="file" accept="image/*" required>
