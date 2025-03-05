@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'docker-hub-credentials') {
+                    withDockerRegistry(credentialsId: 'dockerhubcred') {
                         sh "docker build -t quasarcelestio/osteoarthritis-upchaar:pipeline ."
                     }
                 }
@@ -23,9 +23,17 @@ pipeline {
         stage('Upload image on Dockerhub') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'docker-hub-credentials') {
+                    withDockerRegistry(credentialsId: 'dockerhubcred') {
                         sh "docker push quasarcelestio/osteoarthritis-upchaar:pipeline"
                     }
+                }
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                script {
+                    sh "docker rmi ${DOCKER_IMAGE} || true"
+                    sh "docker system prune -f || true"
                 }
             }
         }
