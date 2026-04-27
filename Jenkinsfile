@@ -34,7 +34,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 script {
-                    sh "docker rmi ${DOCKER_IMAGE} || true"
+                    sh "docker rmi quasarcelestio/osteoarthritis-upchaar:pipeline || true"
                     sh "docker system prune -f || true"
                 }
             }
