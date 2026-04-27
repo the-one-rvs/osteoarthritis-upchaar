@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'agent-1'
+    }
 
     triggers {
         pollSCM('* * * * *')
